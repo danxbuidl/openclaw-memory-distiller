@@ -14,6 +14,9 @@ only the parts that are durable enough to improve future work.
 Read `references/output-format.md` when the user wants a structured output
 template, a prompt-ready context block, or a reusable memory profile format.
 
+Read `references/example-prompts.md` when the user needs prompt examples,
+variation ideas, or help choosing the right invocation pattern.
+
 ## Quick Start
 
 If the user does not specify a format, default to this flow:

@@ -61,6 +61,7 @@ This skill is intentionally conservative:
 - `memory-distiller/SKILL.md` - core skill behavior
 - `memory-distiller/agents/openai.yaml` - UI-facing metadata
 - `memory-distiller/references/output-format.md` - structured output patterns
+- `memory-distiller/references/example-prompts.md` - ready-to-use prompt examples
 
 ## Repository goal
 

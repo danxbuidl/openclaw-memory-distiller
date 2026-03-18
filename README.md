@@ -18,8 +18,14 @@ The published skill lives at:
 
 ## Installation
 
-Until this skill is published to ClawHub, install it by copying or cloning the
-`memory-distiller/` directory into one of OpenClaw's skill locations:
+Install from ClawHub:
+
+```bash
+clawhub install danxbuidl-memory-distiller
+```
+
+Or install manually by copying or cloning the `memory-distiller/` directory
+into one of OpenClaw's skill locations:
 
 - workspace-local: `./skills/memory-distiller`
 - shared user install: `~/.openclaw/skills/memory-distiller`
@@ -112,7 +118,7 @@ Current status:
 
 - standalone repository created
 - first working skill draft implemented
-- preparing for public iteration and ClawHub publication
+- published to ClawHub as `danxbuidl-memory-distiller@0.1.0`
 
 ## Roadmap
 

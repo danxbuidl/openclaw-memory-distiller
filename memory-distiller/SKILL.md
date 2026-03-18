@@ -14,6 +14,22 @@ only the parts that are durable enough to improve future work.
 Read `references/output-format.md` when the user wants a structured output
 template, a prompt-ready context block, or a reusable memory profile format.
 
+## Quick Start
+
+If the user does not specify a format, default to this flow:
+
+1. extract candidate memories from the source material
+2. keep only durable and evidence-backed items
+3. rewrite them as future-facing rules
+4. return:
+   - stable preferences
+   - working rules
+   - anti-patterns
+   - one short reusable context block
+
+If the user already has a memory document, switch into review mode instead of
+rebuilding everything from scratch.
+
 ## When To Use
 
 Use this skill when the user asks to:
@@ -31,6 +47,21 @@ Do not use this skill for:
 - temporary task state that will expire quickly
 - guesses about user preferences that are not supported by evidence
 - hidden or background memory injection into runtime code paths
+
+## Output Selection
+
+Choose the narrowest output that matches the user's goal:
+
+- memory profile
+  - use when the user wants a compact long-term preference document
+- cleaned memory list
+  - use when the user already has notes and wants to remove weak items
+- prompt-ready context block
+  - use when the user wants a short block to reuse in future prompts
+- review and rewrite report
+  - use when the user wants to know what should be kept, rewritten, or removed
+
+Read `references/output-format.md` before producing any structured output.
 
 ## Core Rule
 
@@ -53,6 +84,22 @@ Weak candidates:
 - personal guesses not explicitly supported by the source material
 
 When a memory candidate is uncertain, mark it as tentative or exclude it.
+
+## Evidence Threshold
+
+Prefer memories that are supported by one of these:
+
+- an explicit user statement
+- a repeated pattern across multiple examples
+- a successful workflow that clearly generalizes
+- a durable constraint that is unlikely to change soon
+
+Prefer to exclude items that are supported only by:
+
+- one weak hint
+- a single accidental success
+- a temporary environment detail
+- a guess about personality or intent
 
 ## Workflow
 
@@ -87,6 +134,12 @@ Group candidates into a small set of categories:
 - constraints
 - anti-patterns
 - reusable procedures
+
+When possible, tag each candidate mentally as one of:
+
+- confirmed
+- tentative
+- reject
 
 ### 3. Remove weak or noisy items
 
@@ -132,6 +185,42 @@ If the user does not specify a format, default to:
 3. Anti-patterns
 4. A short reusable context block
 
+## Examples
+
+### Example: conversation to profile
+
+If the source says:
+
+- "Please keep answers concise."
+- "I prefer JSON when I ask for structured output."
+- "Do not add long background explanations unless I ask."
+
+The distilled result should look like:
+
+- Prefer concise responses by default.
+- Use JSON when the user explicitly asks for structured output.
+- Avoid long background explanations unless requested.
+
+### Example: task outcomes to rules
+
+If repeated successful tasks show:
+
+- good results when output is checklist-based
+- repeated failures when assumptions are not surfaced
+
+The distilled result should look like:
+
+- Prefer checklist-style outputs for execution-heavy tasks.
+- Surface assumptions explicitly before committing to a plan.
+
+### Example: weak candidate to exclude
+
+If the only evidence is:
+
+- "Yesterday the user wanted a long poetic answer."
+
+Do not convert that into a durable preference unless there is more support.
+
 ## Output Guidance
 
 When producing memory content:
@@ -151,3 +240,4 @@ realistically be reused without bloating future prompts.
 - Do not retain sensitive details unless the user clearly wants them preserved.
 - Do not turn one failure into a permanent rule without evidence that it is recurring.
 - When in doubt, exclude the item or mark it tentative.
+- Prefer omission over noisy memory.

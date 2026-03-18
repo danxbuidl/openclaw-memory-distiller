@@ -38,6 +38,31 @@ Example prompts:
 - `Use $memory-distiller to create a concise context block I can reuse next time.`
 - `Use $memory-distiller to review this memory profile and remove weak or temporary items.`
 
+## Quick Example
+
+Input:
+
+```text
+Please keep answers concise.
+Use JSON when I explicitly ask for structured output.
+Do not add long background explanations unless I ask.
+```
+
+Possible distilled output:
+
+```md
+## Stable Preferences
+- Prefer concise responses by default.
+- Use JSON when the user explicitly asks for structured output.
+
+## Anti-Patterns
+- Avoid long background explanations unless requested.
+
+## Reusable Context Block
+The user prefers concise responses and explicit structure when requested.
+Avoid long background explanations unless they ask for more detail.
+```
+
 ## What it produces
 
 Depending on the request, the skill can help generate:
@@ -55,6 +80,19 @@ This skill is intentionally conservative:
 - it avoids inventing user preferences
 - it separates stable memory from one-off chatter
 - it keeps prompt-ready context blocks compact enough to be reusable
+
+## Why this exists
+
+Most raw chat history is not good memory.
+
+Good memory should be:
+
+- stable enough to reuse
+- specific enough to matter
+- short enough to fit into future context
+- conservative enough not to distort later prompts
+
+`memory-distiller` exists to help separate durable signal from noisy history.
 
 ## Repository structure
 
@@ -75,3 +113,10 @@ Current status:
 - standalone repository created
 - first working skill draft implemented
 - preparing for public iteration and ClawHub publication
+
+## Roadmap
+
+- publish the skill to ClawHub
+- refine output modes based on real usage
+- add more examples for review, cleanup, and profile generation flows
+- explore a companion runtime/plugin path separately from the skill itself
